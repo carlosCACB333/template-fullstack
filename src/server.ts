@@ -1,8 +1,8 @@
 import express from 'express';
-import router from './lib/router';
 import path from 'path';
+import router from './routes';
 
-const { PORT = 3001 } = process.env;
+const { PORT = 8080 } = process.env;
 
 const app = express();
 
@@ -10,10 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Serve API requests from the router
-app.use('/api', router);
-
-// Serve storybook production bundle
-app.use('/storybook', express.static('dist/storybook'));
+app.use('/', router);
 
 // Serve app production bundle
 app.use(express.static('dist/app'));

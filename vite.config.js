@@ -4,18 +4,12 @@ dotenv.config();
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 
-const { PORT = 3001 } = process.env;
+const { PORT_CLIENT = 3000 } = process.env;
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [reactRefresh()],
   server: {
-    proxy: {
-      '/api': {
-        target: `http://localhost:${PORT}`,
-        changeOrigin: true,
-      },
-    },
+    port: Number(PORT_CLIENT),
   },
   build: {
     outDir: 'dist/app',
